@@ -13,6 +13,6 @@ router.post('/session', new AuthUserController().handle);
 router.get('/me', isAuth, new DetailsUserController().handle);
 
 
-router.post("categories", new CreateCategoryController().handle);
+router.post("/categories", new CreateCategoryController().handle);
 
 export { router }

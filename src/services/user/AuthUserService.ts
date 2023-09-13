@@ -17,12 +17,15 @@ class AuthUserService {
 
             where: {
                 email,
-                status: true
             }
         });
 
         if (!user) {
             throw new Error("Email ou palavra-passe não encontrada!");
+        }
+
+        if (!user.status) {
+            throw new Error("Consulte o administrador do sistema!");
         }
 
         const passwordMatch = await compare(password, user.password);

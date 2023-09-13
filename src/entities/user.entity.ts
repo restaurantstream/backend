@@ -1,13 +1,9 @@
 
 export interface UserProps {
 
-    id: string,
     name: string,
     email: string,
-    password: string,
-    status: boolean,
-    createdAt: Date,
-    updatedAt: Date,
+    password: string
 }
 
 
@@ -28,10 +24,6 @@ export class User {
         this.props.password = password;
     }
 
-    private get getId(): string {
-        return this.props.id;
-    }
-
     private get getName(): string {
         return this.props.name;
     }
@@ -42,18 +34,6 @@ export class User {
 
     private get getPassword(): string {
         return this.props.password;
-    }
-
-    private get getStatus(): boolean {
-        return this.props.status;
-    }
-
-    private get getCreatedAt(): Date {
-        return this.props.createdAt;
-    }
-
-    private get getUpdatedAt(): Date {
-        return this.props.updatedAt;
     }
 
     constructor(props: UserProps) {

@@ -2,26 +2,17 @@ import { Item } from "@prisma/client";
 
 export interface ProductProps {
 
-    id: string,
     name: string,
     description: string,
     price: string,
     image: string,
     categoryId: string,
-    items: Item[],
-    status: boolean,
-    createdAt: Date,
-    updatedAt: Date,
 }
 
 
 export class Product {
 
     private props: ProductProps
-
-    private get id(): string {
-        return this.props.id;
-    }
 
     private get name(): string {
         return this.props.name;
@@ -41,22 +32,6 @@ export class Product {
 
     private get categoryId(): string {
         return this.props.categoryId;
-    }
-
-    private get items(): Item[] {
-        return this.props.items;
-    }
-
-    private get status(): boolean {
-        return this.props.status;
-    }
-
-    private get createdAt(): Date {
-        return this.props.createdAt;
-    }
-
-    private get updatedAt(): Date {
-        return this.props.updatedAt;
     }
 
     constructor(props: ProductProps) {
