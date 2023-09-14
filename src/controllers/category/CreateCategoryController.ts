@@ -11,7 +11,7 @@ class CreateCategoryController {
         const createUserSchema = z.object({
             name: z.string({
                 required_error: "O nome não deve ser inválido.",
-                invalid_type_error: "O nome não deve ser uma string."
+                invalid_type_error: "O nome deve ser uma string."
             }).min(3, {
                 message: "O nome deve ter no mínimo 3 caracteres."
             }).max(100, {

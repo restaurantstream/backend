@@ -12,7 +12,7 @@ class AuthUserController {
 
             email: z.string({
                 required_error: "O email não deve ser inválido.",
-                invalid_type_error: "O email não deve ser uma string."
+                invalid_type_error: "O email deve ser uma string."
             }).email({
                 message: "Endereço de email inválida."
             }).min(10, {
@@ -20,7 +20,10 @@ class AuthUserController {
             }).max(50, {
                 message: "O nome deve ter no máximo 50 caracteres."
             }),
-            password: z.string().min(6, {
+            password: z.string({
+                required_error: "A palavra-passe não deve ser inválida.",
+                invalid_type_error: "A palavra-passe deve ser uma string."
+            }).min(6, {
                 message: "A palavra-passe deve ter no mínimo 6 caracteres."
             }).max(50, {
                 message: "A palavra-passe deve ter no máximo 50 caracteres."
