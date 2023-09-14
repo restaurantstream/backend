@@ -1,4 +1,3 @@
-import { Item } from "@prisma/client";
 
 export interface ProductProps {
 
@@ -59,7 +58,7 @@ export class Product {
         } else if (price.length < 3) {
             throw new Error("O preço deve ter no mínimo 3 caracteres.");
         } else if (categoryId.length < 3) {
-            throw new Error("A palavra-passe deve ter no mínimo 3 caracteres.");
+            throw new Error("A categoria deve ter no mínimo 3 caracteres.");
         }
 
         this.props = props;

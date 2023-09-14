@@ -9,7 +9,7 @@ class CreateUserController {
         const createUserSchema = z.object({
             name: z.string({
                 required_error: "O nome não deve ser inválido.",
-                invalid_type_error: "O nome não deve ser uma string."
+                invalid_type_error: "O nome deve ser uma string."
             }).min(3, {
                 message: "O nome deve ter no mínimo 3 caracteres."
             }).max(100, {
@@ -17,7 +17,7 @@ class CreateUserController {
             }),
             email: z.string({
                 required_error: "O email não deve ser inválido.",
-                invalid_type_error: "O email não deve ser uma string."
+                invalid_type_error: "O email deve ser uma string."
             }).email({
                 message: "Endereço de email inválida."
             }).min(10, {
@@ -25,7 +25,10 @@ class CreateUserController {
             }).max(50, {
                 message: "O nome deve ter no máximo 50 caracteres."
             }),
-            password: z.string().min(6, {
+            password: z.string({
+                required_error: "A palavra-passe não deve ser inválida.",
+                invalid_type_error: "A palavra-passe deve ser uma string."
+            }).min(6, {
                 message: "A palavra-passe deve ter no mínimo 6 caracteres."
             }).max(50, {
                 message: "A palavra-passe deve ter no máximo 50 caracteres."
@@ -42,7 +45,7 @@ class CreateUserController {
 
         const createUserService = new CreateUserService();
 
-        const user = createUserService.execute({name, email, password});
+        const user = await createUserService.execute({name, email, password});
 
         return res.status(201).json(user);
     }
