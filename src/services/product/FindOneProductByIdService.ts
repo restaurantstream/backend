@@ -10,7 +10,7 @@ class FindOneProductByIdService {
         });
 
         if (!product) {
-            throw new Error("Este producto não existe!");
+            throw new Error("Este produto não existe!");
         }
 
         return product;

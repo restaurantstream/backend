@@ -1,5 +1,6 @@
 import { hash } from "bcryptjs";
 import prismaClient from "../../prisma";
+import { FindOneUserByEmailService } from "./FindOneUserByEmailService";
 
 type CreateUserProps = {
 
@@ -12,11 +13,8 @@ class CreateUserService {
 
     async execute({ name, email, password }: CreateUserProps) {
 
-        const userAlreadyExists = await prismaClient.user.findFirst({
-            where: {
-                email
-            }
-        });
+        const findOneUserByEmailService = new FindOneUserByEmailService();
+        const userAlreadyExists = await findOneUserByEmailService.execute(email);
 
         if (userAlreadyExists) {
             throw new Error("Este email já foi cadastrado!");
@@ -31,8 +29,6 @@ class CreateUserService {
                 password: passwordHash
             }
         });
-
-        console.log(user);
 
         return user;
     }

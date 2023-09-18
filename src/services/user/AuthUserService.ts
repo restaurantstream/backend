@@ -2,6 +2,7 @@
 import prismaClient from "../../prisma";
 import { compare } from 'bcryptjs';
 import { sign } from 'jsonwebtoken';
+import { FindOneUserByEmailService } from "./FindOneUserByEmailService";
 
 interface AuthRequest {
 
@@ -13,17 +14,13 @@ class AuthUserService {
 
     async execute({ email, password }: AuthRequest) {
 
-        const user = await prismaClient.user.findFirst({
-
-            where: {
-                email,
-            }
-        });
+        const findOneUserByEmailService = new FindOneUserByEmailService();
+        const user = await findOneUserByEmailService.execute(email);
 
         if (!user) {
-            throw new Error("Email ou palavra-passe não encontrada!");
+            throw new Error("Email não encontrado!");
         }
-
+        
         if (!user.status) {
             throw new Error("Consulte o administrador do sistema!");
         }
@@ -38,7 +35,7 @@ class AuthUserService {
         const token = sign({
 
             id: user.id,
-            email: user.email,            
+            email: user.email,
             status: user.status,
 
         },
@@ -51,7 +48,7 @@ class AuthUserService {
 
         return {
             id: user.id,
-            email: user.email,            
+            email: user.email,
             status: user.status,
             token,
         }

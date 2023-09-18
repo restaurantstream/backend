@@ -56,15 +56,6 @@ class CreateProductController {
 
             } = createProductSchema.parse(req.body);
 
-            console.log({
-
-                name,
-                price,
-                description,
-                categoryId
-
-            })
-
             new Product({ name, price, image, description, categoryId });
 
             const createProductService = new CreateProductService();

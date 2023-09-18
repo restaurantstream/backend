@@ -17,7 +17,7 @@ class DeleteOneCategoryByIdController {
             })
         });
 
-        const { id } = deleteOneCategorySchema.parse(req.params);
+        const { id } = deleteOneCategorySchema.parse(req.query);
 
         const deleteOneCategoryByIdService = new DeleteOneCategoryByIdService();
 

@@ -1,5 +1,5 @@
 
-export interface ProductProps {
+export interface ItemProps {
 
     amount: number,
     orderId: string,
@@ -7,9 +7,9 @@ export interface ProductProps {
 }
 
 
-export class Product {
+export class Item {
 
-    private props: ProductProps
+    private props: ItemProps
 
     private get amount(): number {
         return this.props.amount;
@@ -23,7 +23,7 @@ export class Product {
         return this.props.productId;
     }
 
-    constructor(props: ProductProps) {
+    constructor(props: ItemProps) {
 
         const {
 
