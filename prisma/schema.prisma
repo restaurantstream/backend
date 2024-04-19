@@ -10,12 +10,33 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model UserType {
+  id   String @id @default(uuid())
+  ksId Int    @default(autoincrement())
+
+  level Int @unique
+
+  status Boolean @default(true)
+
+  users User[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now())
+
+  @@map("accounttype")
+}
+
 model User {
-  id       String  @id @default(uuid())
+  id   String @id @default(uuid())
+  ksId Int    @default(autoincrement())
+
   name     String
   email    String
   password String
   status   Boolean @default(true)
+
+  userTypeId String
+  userType   UserType @relation(fields: [userTypeId], references: [id])
 
   createdAt DateTime? @default(now())
   updatedAt DateTime? @default(now())
@@ -24,7 +45,9 @@ model User {
 }
 
 model Category {
-  id     String  @id @default(uuid())
+  id   String @id @default(uuid())
+  ksId Int    @default(autoincrement())
+
   name   String
   status Boolean @default(true)
 
@@ -37,7 +60,9 @@ model Category {
 }
 
 model Product {
-  id          String  @id @default(uuid())
+  id   String @id @default(uuid())
+  ksId Int    @default(autoincrement())
+
   name        String
   description String
   price       String
@@ -56,7 +81,9 @@ model Product {
 }
 
 model Order {
-  id    String  @id @default(uuid())
+  id   String @id @default(uuid())
+  ksId Int    @default(autoincrement())
+
   table Int
   name  String?
 
@@ -73,15 +100,16 @@ model Order {
 
 model Item {
   id     String @id @default(uuid())
+  ksId   Int    @default(autoincrement())
   amount Int
-
-  createdAt DateTime? @default(now())
-  updatedAt DateTime? @default(now())
 
   order     Order   @relation(fields: [orderId], references: [id])
   orderId   String
   product   Product @relation(fields: [productId], references: [id])
   productId String
 
+  createdAt DateTime? @default(now())
+  updatedAt DateTime? @default(now())
+  
   @@map("items")
 }
