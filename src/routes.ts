@@ -25,6 +25,7 @@ import { FindAllOrdersController } from "./controllers/order/FindAllOrdersContro
 import { FindOneOrderByIdController } from "./controllers/order/FindOneOrderByIdController";
 import { DeleteOneCategoryByIdController } from "./controllers/category/DeleteOneCategoryByIdController";
 import { DetailsOrderController } from "./controllers/order/DetailsOrderController";
+import { SendOrderController } from "./controllers/order/SendOrderController";
 
 const router = Router();
 
@@ -57,6 +58,7 @@ router.post("/orders", isAuth, new CreateOrderController().handle);
 router.delete("/orders", isAuth, new RemoveOrderByIdController().handle);
 router.post("/orders/add", isAuth, new AddItemController().handle);
 router.delete("/orders/delete", isAuth, new DeleteItemController().handle);
+router.patch("/orders/send", isAuth, new SendOrderController().handle);
 router.patch("/orders/finish", isAuth, new FinishOrderController().handle);
 
 

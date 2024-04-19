@@ -46,7 +46,7 @@ class CreateProductController {
         } else {
 
             const { filename: image } = req.file;
-
+            
             const {
 
                 name,

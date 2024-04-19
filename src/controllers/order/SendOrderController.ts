@@ -1,13 +1,13 @@
 import { Request, Response } from "express";
 import { z } from "zod";
-import { FinishOrderService } from "../../services/order/FinishOrderService";
+import { SendOrderService } from "../../services/order/SendOrderService";
 
 
-class FinishOrderController {
+class SendOrderController {
 
     async handle(req: Request, res: Response) {
-
-        const finishOrderSchema = z.object({
+        
+        const sendOrderSchema = z.object({
             orderId: z.string({
                 required_error: "O id do pedido não deve ser inválida.",
                 invalid_type_error: "O id do pedido deve ser um número."
@@ -16,15 +16,15 @@ class FinishOrderController {
             }),
         });
 
-        const { orderId } = finishOrderSchema.parse(req.query);
+        const { orderId } = sendOrderSchema.parse(req.query);
 
-        const finishOrderService = new FinishOrderService();
+        const sendOrderService = new SendOrderService();
 
-        const order = await finishOrderService.execute(orderId);
+        const order = await sendOrderService.execute(orderId);
 
         return res.status(201).json(order);
 
     }
 }
 
-export { FinishOrderController }
+export { SendOrderController }
