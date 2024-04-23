@@ -15,13 +15,11 @@ class DetailsOrderController {
             orderId: z.string({
                 required_error: "O id não deve ser inválido.",
                 invalid_type_error: "O id deve ser uma string."
-            }).min(3, {
-                message: "O id deve ter no mínimo 3 caracteres."
-            })
+            }).uuid()
         });
 
         const { orderId } = detailsOrderSchema.parse(req.query);
-        
+
         const findOneOrderByIdService = new DetailsOrderService();
 
         const order = await findOneOrderByIdService.execute(orderId);

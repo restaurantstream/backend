@@ -5,13 +5,14 @@ interface Payload {
     sub: string;
 }
 
-
 export function isAuth(req: Request, res: Response, next: NextFunction) {
 
     const authToken = req.headers.authorization;
 
     if (!authToken) {
-        return res.status(401).send("Nenhum Token existente!").end();
+        return res.status(401).json({
+            message: "Nenhum Token existente!"
+        }).end();
     }
 
     const [, token] = authToken.split(" ");
@@ -30,6 +31,8 @@ export function isAuth(req: Request, res: Response, next: NextFunction) {
         return next();
 
     } catch (err) {
-        return res.status(401).send("Somente pessoas autorizadas!").end();
+        return res.status(403).json({
+            message: "Área restrita. Somente pessoas autorizadas!"
+        }).end();
     }
 }

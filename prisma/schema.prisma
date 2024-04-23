@@ -17,13 +17,13 @@ model UserType {
   level Int @unique
 
   status Boolean @default(true)
-
+  
   users User[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @default(now())
 
-  @@map("accounttype")
+  @@map("usertype")
 }
 
 model User {
@@ -110,6 +110,6 @@ model Item {
 
   createdAt DateTime? @default(now())
   updatedAt DateTime? @default(now())
-  
+
   @@map("items")
 }

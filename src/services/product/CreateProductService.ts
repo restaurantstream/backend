@@ -1,8 +1,4 @@
-import { Request, Response } from "express";
-import { z } from "zod";
-import { CreateCategoryService } from "../category/CreateCategoryService";
-import { Category } from "../../entities/category.entity";
-import { Product } from "../../entities/product.entity";
+
 import prismaClient from "../../prisma";
 import { FindOneCategoryByIdService } from "../category/FindOneCategoryByIdService";
 

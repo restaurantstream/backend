@@ -17,13 +17,10 @@ class FindOneUserByIdService {
             }
         });
 
-        if (!user) {
-            throw new Error("Este usuário não existe!");
-        }
+        if (!user) throw new Error("Este usuário não existe!");
 
         return user;
     }
-
 }
 
 export { FindOneUserByIdService }

@@ -11,9 +11,7 @@ class FindOneOrderByIdController {
             id: z.string({
                 required_error: "O id não deve ser inválido.",
                 invalid_type_error: "O id deve ser uma string."
-            }).min(3, {
-                message: "O id deve ter no mínimo 3 caracteres."
-            })
+            }).uuid()
         });
 
         const { id } = findOneOrderSchema.parse(req.params);
