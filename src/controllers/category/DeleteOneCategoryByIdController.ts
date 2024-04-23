@@ -1,6 +1,5 @@
 import { Request, Response } from "express";
 import { z } from "zod";
-import { FindOneCategoryByIdService } from "../../services/category/FindOneCategoryByIdService";
 import { DeleteOneCategoryByIdService } from "../../services/category/DeleteOneCategoryByIdService";
 
 

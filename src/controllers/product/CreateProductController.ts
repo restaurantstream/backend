@@ -1,10 +1,7 @@
 import { Request, Response } from "express";
 import { z } from "zod";
-import { CreateCategoryService } from "../../services/category/CreateCategoryService";
-import { Category } from "../../entities/category.entity";
 import { Product } from "../../entities/product.entity";
 import { CreateProductService } from "../../services/product/CreateProductService";
-
 
 class CreateProductController {
 
@@ -39,14 +36,14 @@ class CreateProductController {
             })
         });
 
-        if (!req?.file) {
+        if (!req.file) {
 
             throw new Error("Erro ao carregar o ficheiro.");
 
         } else {
 
             const { filename: image } = req.file;
-            
+
             const {
 
                 name,

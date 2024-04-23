@@ -1,5 +1,4 @@
 import prismaClient from "../../prisma";
-import { FindOneOrderByIdService } from "./FindOneOrderByIdService";
 
 
 class DetailsOrderService {
